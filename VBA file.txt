@@ -1,0 +1,108 @@
+Sub Formattingintocolumn()
+
+' This is to hide the updates being done in the excel to be shown in the screen
+
+Application.ScreenUpdating = False
+
+' Formattingintocolumn Macro
+' Use this function to transpose the data to columns
+'
+' Keyboard Shortcut: Ctrl+Shift+P
+
+    Range("B1").Select
+    ActiveCell.Range("A1:A6").Select
+    
+'  selection of the first set of 6 rows and converting them to colums
+
+' Implement a do while or do until loop to run the below steps multiple times
+
+Do Until IsEmpty(ActiveCell)
+
+
+
+' Below code is used to copy and transpose data
+
+
+    Selection.Copy
+    ActiveCell.Offset(0, 2).Range("A1").Select
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    ActiveCell.Offset(6, -2).Range("A1:A6").Select
+    Application.CutCopyMode = False
+    
+    
+    
+' Loop is to be added at the end to close the do loop
+    
+    
+    Loop
+    
+    
+    
+    
+    
+    
+' We don't need these below 2 codes we will use do while loop to run it multiple time.
+' selection of the second set of 6 rows and converting them to colums
+  ' Selection.Copy
+  ' ActiveCell.Offset(0, 2).Range("A1").Select
+  ' Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+  ' False, Transpose:=True
+  ' ActiveCell.Offset(6, -2).Range("A1:A6").Select
+  ' Application.CutCopyMode = False
+    
+    
+    
+'  selection of the third set of 6 rows and converting them to colums
+    'Selection.Copy
+    'ActiveCell.Offset(0, 2).Range("A1").Select
+    'Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+    'False, Transpose:=True
+    
+    
+    ' End sub is to end the marcos function
+    
+    
+' End Sub [ Removed this to merge the 2 macros]
+
+' Remove the start of the 2nd macros and merge with the old to perform the actiuons together
+
+' Sub Removespaceandsort() [Removed this to merge with above]
+
+' Removespaceandsort Macro
+' To remove the spaces in the data and sort them
+'
+' Keyboard Shortcut: Ctrl+Shift+L
+'
+    Columns("D:I").Select
+    ActiveWorkbook.Worksheets("Colorado List").Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets("Colorado List").Sort.SortFields.Add2 Key:=Range( _
+        "D1:D2407"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets("Colorado List").Sort
+        .SetRange Range("D1:I2407")
+        .Header = xlGuess
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    Range("D1:I1").Select
+    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+    Range("A1:A6").Select
+    Selection.Copy
+    Range("D1").Select
+    Selection.PasteSpecial Paste:=xlPasteAll, Operation:=xlNone, SkipBlanks:= _
+        False, Transpose:=True
+    Columns("D:I").Select
+    Columns("D:I").EntireColumn.AutoFit
+    Range("D1:I1").Select
+    Application.CutCopyMode = False
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent1
+        .TintAndShade = 0.399975585192419
+        .PatternTintAndShade = 0
+    End With
+End Sub
